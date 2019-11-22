@@ -29,6 +29,9 @@ class FlutterVolumePlugin(registrar: Registrar) : MethodCallHandler, VolumeKeyLi
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
+            if (registrar.activity() == null) {
+                return
+            }
             val channel = MethodChannel(registrar.messenger(), "com.befovy.flutter_volume")
 
             plugin = FlutterVolumePlugin(registrar)
